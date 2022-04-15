@@ -3,6 +3,7 @@ from data import db_session
 from flask import Flask, render_template, redirect
 
 from data.jobs import Jobs
+from forms.loginform import LoginForm
 from forms.user import RegisterForm
 from data.users import User
 
