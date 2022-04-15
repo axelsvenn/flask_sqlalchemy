@@ -6,6 +6,7 @@ from data.jobs import Jobs
 from forms.loginform import LoginForm
 from forms.user import RegisterForm
 from data.users import User
+from datetime import datetime
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
@@ -63,48 +64,14 @@ def main():
     db_session.global_init("db/mars_explorer.db")
     db_sess = db_session.create_session()
 
-    user = User()
-    user.surname = "Scott"
-    user.name = "Riddley"
-    user.age = 21
-    user.position = "captain"
-    user.speciality = "research engineer"
-    user.address = "module_1"
-    user.email = "scott_chief@mars.org"
-    db_sess.add(user)
-
-    user = User()
-    user.surname = "White"
-    user.name = "Walter"
-    user.age = 52
-    user.position = "cook"
-    user.speciality = "cook our food"
-    user.address = "module_kitchen"
-    user.email = "savewalterwhite@mars.org"
-    user.set_password("heisenberg")
-    db_sess.add(user)
-
-    user = User()
-    user.surname = "Sadovnikov"
-    user.name = "Sergei"
-    user.age = 35
-    user.position = "programmer"
-    user.speciality = "rostelecom"
-    user.address = "module_208"
-    user.email = "sersad@mars.org"
-    user.set_password("sersad")
-    db_sess.add(user)
-
-    user = User()
-    user.surname = "Ivanov"
-    user.name = "Grisha"
-    user.age = 17
-    user.position = "clown"
-    user.speciality = "lyceum_yandex"
-    user.address = "module_208"
-    user.email = "mulgach@mars.org"
-    user.set_password("mulgach2005")
-    db_sess.add(user)
+    job = Jobs()
+    job.team_leader = 1
+    job.job = "deployment of residential modules 1 and 2"
+    job.work_size = 15
+    job.collaborators = "2, 3"
+    job.start_date = datetime.now()
+    job.is_finished = False
+    db_sess.add(job)
 
     db_sess.commit()
     # app.run()
