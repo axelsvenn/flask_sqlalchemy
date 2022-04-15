@@ -62,16 +62,50 @@ def reqister():
 def main():
     db_session.global_init("db/mars_explorer.db")
     db_sess = db_session.create_session()
+
     user = User()
-    user.surname = "Walter"
-    user.name = "White"
+    user.surname = "Scott"
+    user.name = "Riddley"
+    user.age = 21
+    user.position = "captain"
+    user.speciality = "research engineer"
+    user.address = "module_1"
+    user.email = "scott_chief@mars.org"
+    db_sess.add(user)
+
+    user = User()
+    user.surname = "White"
+    user.name = "Walter"
     user.age = 52
     user.position = "cook"
     user.speciality = "cook our food"
     user.address = "module_kitchen"
     user.email = "savewalterwhite@mars.org"
-    user.hashed_password = "heinsenberg"
+    user.set_password("heisenberg")
     db_sess.add(user)
+
+    user = User()
+    user.surname = "Sadovnikov"
+    user.name = "Sergei"
+    user.age = 35
+    user.position = "programmer"
+    user.speciality = "rostelecom"
+    user.address = "module_208"
+    user.email = "sersad@mars.org"
+    user.set_password("sersad")
+    db_sess.add(user)
+
+    user = User()
+    user.surname = "Ivanov"
+    user.name = "Grisha"
+    user.age = 17
+    user.position = "clown"
+    user.speciality = "lyceum_yandex"
+    user.address = "module_208"
+    user.email = "mulgach@mars.org"
+    user.set_password("mulgach2005")
+    db_sess.add(user)
+
     db_sess.commit()
     # app.run()
 
