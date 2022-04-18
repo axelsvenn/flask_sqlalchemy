@@ -40,7 +40,7 @@ def reqister():
     form = RegisterForm()
     if form.validate_on_submit():
         if form.password.data != form.password_again.data:
-            return render_template('register.html', title='Регистрация',
+                return render_template('register.html', title='Регистрация',
                                    form=form,
                                    message="Пароли не совпадают")
         db_sess = db_session.create_session()
@@ -49,9 +49,13 @@ def reqister():
                                    form=form,
                                    message="Такой пользователь уже есть")
         user = User(
-            name=form.name.data,
             email=form.email.data,
-            about=form.about.data
+            surname=form.surname.data,
+            name=form.name.data,
+            age=form.age.data,
+            position=form.position.data,
+            speciallity=form.speciallity.data,
+            address=form.address.data
         )
         user.set_password(form.password.data)
         db_sess.add(user)
@@ -64,18 +68,7 @@ def main():
     db_session.global_init("db/mars_explorer.db")
     db_sess = db_session.create_session()
 
-    job = Jobs()
-    job.team_leader = 1
-    job.job = "deployment of residential modules 1 and 2"
-    job.work_size = 15
-    job.collaborators = "2, 3"
-    job.start_date = datetime.now()
-    job.is_finished = False
-    db_sess.add(job)
-
-    db_sess.commit()
-
-    # app.run()
+    app.run()
 
 
 if __name__ == '__main__':
