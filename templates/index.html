@@ -1,16 +1,35 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Записи в блоге</h1>
-{% for item in news%}
-<div class="col-md6 border rounded">
-    <h2>{{item.title}}</h2>
-    <div>
-        {{item.content}}
-    </div>
-    <div>
-        Автор - {{item.user.name}}, Дата написания - {{item.created_date}}
-    </div>
-</div>
+<h1 align="center">Works log</h1>
+
+{% for job in jobs %}
+
+<h2>Action #{{ job.id }}</h2>
+<table class="table">
+  <thead class="table-active">
+    <tr>
+        <th scope="col" width=300 height="30">Title of activity</th>
+        <th scope="col" width=300 height="30">Team leader</th>
+        <th scope="col" width=300 height="30">Duration</th>
+        <th scope="col" width=300 height="30">List of collaborators</th>
+        <th scope="col" width=300 height="30">Is finished</th>
+    </tr>
+  </thead>
+  <tbody class="table-primary">
+    <tr>
+        <td>{{ job.job }}</td>
+        <td>{{ job.team_leader }}</td>
+        <td>{{ job.worksize }} hours</td>
+        <td>{{ job.collaborators }}</td>
+        {% if job.is_finished %}
+        <td class="table-success">Is finished</td>
+        {% else %}
+        <td class="table-danger">Is not finished</td>
+        {% endif %}
+    </tr>
+  </tbody>
+</table>
 {% endfor %}
+
 {% endblock %}
