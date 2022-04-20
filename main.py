@@ -15,7 +15,8 @@ app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
 def index():
     db_sess = db_session.create_session()
     jobs = db_sess.query(Jobs).all()
-    return render_template("index.html", jobs=jobs, title="Work logs")
+    func_name_teamlead = lambda x: db_sess.query(User).filter(User.id == x).first()
+    return render_template("index.html", jobs=jobs, title="Work logs", teamlead=func_name_teamlead)
 
 
 @app.route('/news')

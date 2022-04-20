@@ -19,7 +19,7 @@
   <tbody class="table-primary">
     <tr>
         <td>{{ job.job }}</td>
-        <td>{{ job.team_leader }}</td>
+        <td>{{ teamlead(job.team_leader).surname }} {{ teamlead(job.team_leader).name }}</td>
         <td>{{ job.worksize }} hours</td>
         <td>{{ job.collaborators }}</td>
         {% if job.is_finished %}
